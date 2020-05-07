@@ -1,5 +1,5 @@
 import React from 'react';
-// import HeaderComponent from './HeaderComponent';
+// import arr from './countries.json'
 import Select from 'react-select';
 
 export default class HeaderComponent extends React.Component {
@@ -7,7 +7,7 @@ export default class HeaderComponent extends React.Component {
       super(props);
       this.state={
           "catagory": {"label":"All", "value": "all"},
-          "counrty": {"label":"US", "value":"us"},
+          "counrty":{"label":"INDIA", "value":"in"},
           "data":""
       }
   }
@@ -32,7 +32,7 @@ export default class HeaderComponent extends React.Component {
   
   getCountries() {
       const arr = [
-          {"label":"INDIA", "value":"in"},
+          {"label":"UNITED STATE", "value":"us"},
           {"label":"UNITED ARAB EMIRATES", "value":"ae"},
           {"label":"ARGENTINA", "value":"ar"},
           {"label":"AUSTRIA", "value":"at"},
@@ -40,11 +40,17 @@ export default class HeaderComponent extends React.Component {
           {"label":"BELGIUM", "value":"be"},
           {"label":"BULGARIA ", "value":"bg"},
           {"label":"SWITZERLAND", "value":"br"},
+          {"label": "Thailand", "value": "th"},
+          {"label": "	Brazil", "value": "br"},
+          {"label": "CHINA", "value": "cn"},
+          {"label": "CANADA", "value": "ca"},
+          {"label": "HONG KONG", "value": "hk"},
+          {"label": "ITALY", "value": "it"},
       ]
       return arr
   }
 
-  handleChangeCountry(e) {
+  handleChangeCountry(e) {      
       this.setState({"counrty": e})
   }
 
@@ -79,21 +85,21 @@ export default class HeaderComponent extends React.Component {
           <div className="container">
               <div className="row" >
                   <div className="col-md-12" style={{"margin-top": "20px", "margin-bottom": "20px", "margin-left": "20px"}}>
-                      <div className="col-md-4  ">
+                      <div className="col-md-4  test ">
                           <Select
                               options={this.getCatagories()}
                               value={this.state.catagory}
                               onChange = {(e)=> this.handleChangeCata(e)}
                           />
                       </div>
-                      <div className="col-md-4  ">
+                      <div className="col-md-4 test ">
                           <Select
                               options={this.getCountries()}
                               value={this.state.counrty}
                               onChange = {(e)=> this.handleChangeCountry(e)}
                           />
                       </div>
-                      <div className="col-md-4  ">
+                      <div className="col-md-4 test ">
                           <button className="btn btn-mm btn-primary" onClick={()=> this.handleSearchBTN()} style={{"fontWeight": "bold"}}> <i className="fas fa-search"></i> </button>
                       </div>
                   </div>
@@ -116,7 +122,7 @@ class TopHeadlines extends React.Component{
   }
 
   async componentWillMount() {
-    const url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=f3409e21804448d989163e03e4b538f9"
+    const url = "https://newsapi.org/v2/top-headlines?pageSize=100&country=us&apiKey=f3409e21804448d989163e03e4b538f9"
     await fetch(url).then((res) =>{
     const promise = res.json()
       .then((data)=>{
@@ -168,6 +174,8 @@ class TopHeadlines extends React.Component{
   }
 
   render() {
+    // console.log(">>>",this.state.topHeadlines.length);
+    
       const imgUrl = "https://image.shutterstock.com/image-vector/no-image-available-vector-hand-600w-745639717.jpg"
     return (
       <div className="container">
@@ -180,8 +188,8 @@ class TopHeadlines extends React.Component{
                       <div className="">
                             <div className="col-md-4 ">
                                 {headline["urlToImage"] !== null ? 
-                                    <img style={{"width":"320px", "height": "200px", "marginTop": "15px"}} src={headline["urlToImage"]} alt="img not found"  className="rounded float-left"/> : 
-                                    <img style={{"width":"320px", "height": "200px"}} src={imgUrl} alt="img not found"  className="rounded float-left"/> }
+                                    <img style={{"width":"100%", "height": "200px", "marginTop": "15px"}} src={headline["urlToImage"]} alt="img not found"  className="rounded float-left"/> : 
+                                    <img style={{"width":"100%", "height": "200px"}} src={imgUrl} alt="img not found"  className="rounded float-left"/> }
                             </div>
                             <div className="col-md-8 ">
                             <div >
@@ -227,3 +235,5 @@ class TopHeadlines extends React.Component{
     )
   }
 }
+
+// "https://gist.github.com/almost/7748738"
