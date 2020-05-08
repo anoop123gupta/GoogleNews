@@ -122,7 +122,7 @@ class TopHeadlines extends React.Component{
   }
 
   async componentWillMount() {
-    const url = "https://newsapi.org/v2/top-headlines?pageSize=100&country=us&apiKey=f3409e21804448d989163e03e4b538f9"
+    const url = "https://newsapi.org/v2/top-headlines?pageSize=100&country=in&apiKey=f3409e21804448d989163e03e4b538f9"
     await fetch(url).then((res) =>{
     const promise = res.json()
       .then((data)=>{
